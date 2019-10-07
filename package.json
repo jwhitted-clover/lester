@@ -26,6 +26,7 @@
     "start": "concurrently --kill-others-on-fail \"yarn server\" \"yarn client\"",
     "server:babel": "babel-node --presets=@babel/env",
     "server:start": "nodemon --exec npm run server:babel -- ./server/index.js",
+    "server:test": "jest server --watch",
     "client:start": "react-scripts start",
     "client:build": "react-scripts build",
     "client:test": "react-scripts test",
