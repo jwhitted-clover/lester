@@ -1,4 +1,8 @@
 import React, { Component } from 'react';
+
+import { MathAdd } from '../MathAdd';
+import { MathMultiply } from '../MathMultiply';
+import { MathResult } from '../MathResult';
 import logo from './logo.svg';
 import './App.css';
 
@@ -24,6 +28,13 @@ class App extends Component {
       <div className="App">
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
+          <div>
+            <MathAdd />
+            <MathMultiply />
+            <div>
+              <MathResult />
+            </div>
+          </div>
           <pre>hello: {JSON.stringify(hello, null, 2)}</pre>
           <p>
             Edit <code>src/App.js</code> and save to reload.

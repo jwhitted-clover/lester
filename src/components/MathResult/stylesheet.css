@@ -1,0 +1,9 @@
+.MathResult {
+  font-size: 11pt;
+  color: lightgray;
+}
+
+.MathResult code {
+  font-family: monospace;
+  color: white;
+}
