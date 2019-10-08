@@ -12,7 +12,9 @@ const MathResult = ({ reset, result, formula }) => (
       Result: <code>{result}</code>
     </div>
     <div>
-      <button onClick={reset}>Reset</button>
+      <button type="button" onClick={reset}>
+        Reset
+      </button>
     </div>
   </div>
 );

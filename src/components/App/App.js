@@ -9,7 +9,7 @@ import './App.css';
 class App extends Component {
   state = { hello: undefined };
 
-  async componentWillMount() {
+  async componentDidMount() {
     const response = await fetch(`/hello${window.location.search}`, {
       method: 'POST',
       headers: {
@@ -39,12 +39,7 @@ class App extends Component {
           <p>
             Edit <code>src/App.js</code> and save to reload.
           </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
+          <a className="App-link" href="https://reactjs.org" target="_blank" rel="noopener noreferrer">
             Learn React
           </a>
         </header>

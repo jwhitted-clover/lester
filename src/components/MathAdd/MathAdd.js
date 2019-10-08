@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
 class MathAdd extends Component {
+  // eslint-disable-next-line no-unused-vars
   onClick = event => {
     const { add, value } = this.props;
     add({ value });
@@ -23,8 +24,6 @@ MathAdd.propTypes = {
   add: PropTypes.func.isRequired,
 };
 
-MathAdd.defaultProps = {
-  value: 1,
-};
+MathAdd.defaultProps = { value: 1 };
 
 export default MathAdd;
