@@ -39,18 +39,20 @@
   },
   "scripts": {
     "start": "concurrently --kill-others-on-fail \"yarn server:start\" \"yarn client:start\"",
-    "server:babel": "babel-node --presets=@babel/env",
-    "server:start": "nodemon --exec npm run server:babel -- ./server/index.js",
-    "server:test": "jest server --watch",
     "client:start": "react-scripts start",
     "client:build": "react-scripts build",
     "client:test": "react-scripts test",
+    "client:test:ci": "cross-env CI=true yarn client:test",
     "client:eject": "react-scripts eject",
+    "server:babel": "babel-node --presets=@babel/env",
+    "server:start": "nodemon --exec npm run server:babel -- ./server/index.js",
+    "server:test": "jest server --watch",
+    "server:test:ci": "cross-env CI=true jest server",
     "lint": "cross-env NODE_ENV=development eslint server/**/*.js src/**/*.js"
   },
   "husky": {
     "hooks": {
-      "pre-push": "yarn server:test && && yarn client:test && yarn lint"
+      "pre-push": "yarn server:test:ci && yarn client:test:ci && yarn lint"
     }
   },
   "eslintConfig": {
