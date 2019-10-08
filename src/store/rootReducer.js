@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux';
-import { mathReducer } from './math';
+import { suitesReducer } from './suites';
 
-const rootReducer = combineReducers({ math: mathReducer });
+const rootReducer = combineReducers({ suites: suitesReducer });
 
 export default rootReducer;

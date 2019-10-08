@@ -6,7 +6,7 @@ const PORT = process.env.PORT || 3001;
 
 app.use(express.json());
 
-app.all('/hello', (req, res) => {
+app.all('/api/hello', (req, res) => {
   res.json({
     hello: 'world',
     when: new Date().getTime(),
@@ -15,6 +15,8 @@ app.all('/hello', (req, res) => {
     query: req.query,
   });
 });
+
+app.post('/api/test-suites', require('./test-suites').default);
 
 app.listen(PORT, () => {
   // eslint-disable-next-line no-console
