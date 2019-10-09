@@ -15,10 +15,10 @@ const App = () => (
     </nav>
     <div className="container">
       <div className="row">
-        <div className="col-6">
+        <div className="col-4">
           <SuitesList />
         </div>
-        <div className="col-6">
+        <div className="col-8">
           <SelectedSuite />
         </div>
       </div>

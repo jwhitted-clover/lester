@@ -7,7 +7,10 @@ const Suite = ({ name, suite }) => {
   if (!name) return null;
   return (
     <Card className="SuitesList" color="secondary" inverse>
-      <CardHeader>Suite: {name}</CardHeader>
+      <CardHeader>
+        <span className="text-dark">Suite: </span>
+        {name}
+      </CardHeader>
       <CardBody className="m-0 p-0">
         <JsonInput placeholder={suite} width="100%" viewOnly confirmGood={false} />
       </CardBody>

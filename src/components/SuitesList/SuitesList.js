@@ -6,6 +6,7 @@ import { Card, CardHeader, CardBody, ListGroup } from 'reactstrap';
 import { Loading } from '../Loading';
 
 import SuiteItem from './SuiteItem';
+import './stylesheet.css';
 
 class SuitesList extends Component {
   componentDidMount() {
@@ -31,7 +32,7 @@ class SuitesList extends Component {
           Test Suites {!loading && <span className="text-dark small">({names.length})</span>}
           <button
             type="button"
-            className="btn btn-secondary btn-sm"
+            className="btn btn-secondary btn-sm p-0 px-1"
             onClick={this.refresh}
             disabled={loading}
             title="Refresh">
