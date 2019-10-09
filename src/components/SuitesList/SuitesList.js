@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { Card, CardHeader, CardBody, ListGroup } from 'reactstrap';
+import { Alert, Card, CardHeader, CardBody, ListGroup } from 'reactstrap';
 
 import { Loading } from '../Loading';
 
@@ -25,7 +25,7 @@ class SuitesList extends Component {
   };
 
   render() {
-    const { loading, names, selected } = this.props;
+    const { loading, message, names, selected, status } = this.props;
     return (
       <Card className="SuitesList" color="secondary" inverse>
         <CardHeader>
@@ -46,6 +46,14 @@ class SuitesList extends Component {
         )}
         {!loading && (
           <CardBody className="m-0 p-0">
+            {(status !== 'success' || !!message) && (
+              <Alert color="warning" className="mb-0">
+                <FontAwesomeIcon icon="info-circle" />
+                <span className="ml-2">
+                  {status}. {message}
+                </span>
+              </Alert>
+            )}
             <ListGroup>
               {names.map(name => (
                 <SuiteItem key={name} active={selected === name} name={name} onClick={this.select} />
@@ -62,9 +70,11 @@ SuitesList.propTypes = {
   // connect
   getSuites: PropTypes.func.isRequired,
   loading: PropTypes.bool.isRequired,
+  message: PropTypes.string.isRequired,
   names: PropTypes.arrayOf(PropTypes.string).isRequired,
   selected: PropTypes.string,
   setSelectedSuite: PropTypes.func.isRequired,
+  status: PropTypes.string.isRequired,
 };
 
 SuitesList.defaultProps = { selected: null };

@@ -2,18 +2,22 @@ import * as CONST from '../constants';
 import initialState from './initialState';
 
 const CacheDuration = {
-  success: () => new Date().getTime() + 20 * 60 * 1000, // 20 minutes
+  success: () => {
+    const d = new Date();
+    d.setHours(24, 0, 0, 0); // midnight
+    return d.getTime();
+  },
   failure: () => new Date().getTime() + 10 * 1000, // 10-seconds
 };
 
 export default (state = initialState, { type, payload }) => {
   switch (type) {
-    case CONST.SUITES_GET:
+    case CONST.DEFINITIONS_GET:
       return {
         ...state,
         loading: true,
       };
-    case CONST.SUITES_GET_SUCCESS:
+    case CONST.DEFINITIONS_GET_SUCCESS:
       return {
         ...state,
         data: payload,
@@ -21,7 +25,7 @@ export default (state = initialState, { type, payload }) => {
         loading: false,
         error: '',
       };
-    case CONST.SUITES_GET_FAILURE:
+    case CONST.DEFINITIONS_GET_FAILURE:
       return {
         ...state,
         data: undefined,
@@ -29,13 +33,8 @@ export default (state = initialState, { type, payload }) => {
         loading: false,
         error: payload,
       };
-    case CONST.SUITES_RESET:
+    case CONST.DEFINITIONS_RESET:
       return initialState;
-    case CONST.SUITES_SELECT:
-      return {
-        ...state,
-        selected: payload,
-      };
     default:
       return state;
   }

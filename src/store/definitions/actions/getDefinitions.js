@@ -6,14 +6,14 @@ const ignore = (force, state) => {
   return true;
 };
 
-// eslint-disable-next-line no-unused-vars
+// eslint-dsiable-next-line no-unused-vars
 export default ({ server, force = false } = {}) => async (dispatch, getState) => {
   try {
     if (ignore(force, getState().suites)) return;
 
-    dispatch({ type: CONST.SUITES_GET });
+    dispatch({ type: CONST.DEFINITIONS_GET });
 
-    const response = await fetch('/api/test-suites', {
+    const response = await fetch('/api/test-definitions', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -24,12 +24,12 @@ export default ({ server, force = false } = {}) => async (dispatch, getState) =>
     const json = await response.json();
 
     dispatch({
-      type: CONST.SUITES_GET_SUCCESS,
+      type: CONST.DEFINITIONS_GET_SUCCESS,
       payload: json,
     });
   } catch (e) {
     dispatch({
-      type: CONST.SUITES_GET_FAILURE,
+      type: CONST.DEFINITIONS_GET_FAILURE,
       payload: e.toString(),
     });
   }
