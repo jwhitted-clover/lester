@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { Alert, Card, CardHeader, CardBody, ListGroup } from 'reactstrap';
+import { Alert, Card, CardHeader, CardBody, ListGroup, ListGroupItem } from 'reactstrap';
 
 import { Loading } from '../Loading';
 
@@ -55,6 +55,11 @@ class SuitesList extends Component {
               </Alert>
             )}
             <ListGroup>
+              {!names.length && (
+                <ListGroupItem>
+                  <i>Nothing to display</i>
+                </ListGroupItem>
+              )}
               {names.map(name => (
                 <SuiteItem key={name} active={selected === name} name={name} onClick={this.select} />
               ))}

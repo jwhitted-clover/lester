@@ -1,29 +1,19 @@
 import React from 'react';
+import { BrowserRouter as Router } from 'react-router-dom';
 
-import { SuitesList } from '../SuitesList';
-import { SelectedSuite } from '../Suite';
+import AppNavBar from './AppNavBar';
+import AppContent from './AppContent';
 import './bootstrap.min.css';
 import './stylesheet.css';
 import './font-awesome';
 
 const App = () => (
-  <div className="App">
-    <nav className="navbar fixed-top navbar-dark bg-primary">
-      <a className="navbar-brand" href="/">
-        Lester
-      </a>
-    </nav>
-    <div className="container">
-      <div className="row">
-        <div className="col-4">
-          <SuitesList />
-        </div>
-        <div className="col-8">
-          <SelectedSuite />
-        </div>
-      </div>
+  <Router>
+    <div className="App">
+      <AppNavBar />
+      <AppContent />
     </div>
-  </div>
+  </Router>
 );
 
 export default App;
