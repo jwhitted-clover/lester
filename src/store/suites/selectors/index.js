@@ -7,6 +7,11 @@ export const selectSuitesLoading = createSelector(
   ({ loading }) => loading
 );
 
+export const selectSuitesSelected = createSelector(
+  selectSuitesRoot,
+  ({ selected }) => selected
+);
+
 export const selectSuitesData = createSelector(
   selectSuitesRoot,
   ({ data }) => data || {}
@@ -32,8 +37,8 @@ export const selectSuiteNames = createSelector(
   suites => Object.keys(suites).sort()
 );
 
-export const selectSuite = name =>
-  createSelector(
-    selectSuites,
-    suites => suites[name]
-  );
+export const selectSelectedSuite = createSelector(
+  selectSuites,
+  selectSuitesSelected,
+  (suites, selected) => suites[selected]
+);

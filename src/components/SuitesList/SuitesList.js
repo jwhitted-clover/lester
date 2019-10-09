@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { Card, CardHeader, CardBody, ListGroup, ListGroupItem } from 'reactstrap';
+import { Card, CardHeader, CardBody, ListGroup } from 'reactstrap';
+
+import SuiteItem from './SuiteItem';
 
 class SuitesList extends Component {
   componentDidMount() {
@@ -14,8 +16,13 @@ class SuitesList extends Component {
     getSuites({ force: true });
   };
 
+  select = name => {
+    const { setSelectedSuite } = this.props;
+    setSelectedSuite(name);
+  };
+
   render() {
-    const { loading, names } = this.props;
+    const { loading, names, selected } = this.props;
     return (
       <Card className="SuitesList" color="secondary" inverse>
         <CardHeader>
@@ -34,9 +41,7 @@ class SuitesList extends Component {
           {!loading && (
             <ListGroup>
               {names.map(name => (
-                <ListGroupItem tag="button" action>
-                  {name}
-                </ListGroupItem>
+                <SuiteItem key={name} active={selected === name} name={name} onClick={this.select} />
               ))}
             </ListGroup>
           )}
@@ -51,6 +56,8 @@ SuitesList.propTypes = {
   getSuites: PropTypes.func.isRequired,
   loading: PropTypes.bool.isRequired,
   names: PropTypes.arrayOf(PropTypes.string).isRequired,
+  selected: PropTypes.string.isRequired,
+  setSelectedSuite: PropTypes.func.isRequired,
 };
 
 export default SuitesList;

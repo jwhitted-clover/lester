@@ -31,6 +31,11 @@ export default (state = initialState, { type, payload }) => {
       };
     case CONST.SUITES_RESET:
       return initialState;
+    case CONST.SUITES_SELECT:
+      return {
+        ...state,
+        selected: payload,
+      };
     default:
       return state;
   }
