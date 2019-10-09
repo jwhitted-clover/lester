@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Card, CardHeader, CardBody, ListGroup } from 'reactstrap';
 
+import { Loading } from '../Loading';
+
 import SuiteItem from './SuiteItem';
 
 class SuitesList extends Component {
@@ -36,16 +38,20 @@ class SuitesList extends Component {
             <FontAwesomeIcon icon="sync" />
           </button>
         </CardHeader>
-        <CardBody className="m-0 p-0">
-          {loading && 'Loading...'}
-          {!loading && (
+        {loading && (
+          <CardBody>
+            <Loading />
+          </CardBody>
+        )}
+        {!loading && (
+          <CardBody className="m-0 p-0">
             <ListGroup>
               {names.map(name => (
                 <SuiteItem key={name} active={selected === name} name={name} onClick={this.select} />
               ))}
             </ListGroup>
-          )}
-        </CardBody>
+          </CardBody>
+        )}
       </Card>
     );
   }
@@ -56,8 +62,10 @@ SuitesList.propTypes = {
   getSuites: PropTypes.func.isRequired,
   loading: PropTypes.bool.isRequired,
   names: PropTypes.arrayOf(PropTypes.string).isRequired,
-  selected: PropTypes.string.isRequired,
+  selected: PropTypes.string,
   setSelectedSuite: PropTypes.func.isRequired,
 };
+
+SuitesList.defaultProps = { selected: null };
 
 export default SuitesList;

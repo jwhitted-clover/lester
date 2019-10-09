@@ -1,6 +1,7 @@
 import React from 'react';
 
 import { SuitesList } from '../SuitesList';
+import { SelectedSuite } from '../Suite';
 import './bootstrap.min.css';
 import './stylesheet.css';
 import './font-awesome';
@@ -13,7 +14,14 @@ const App = () => (
       </a>
     </nav>
     <div className="container">
-      <SuitesList />
+      <div className="row">
+        <div className="col-6">
+          <SuitesList />
+        </div>
+        <div className="col-6">
+          <SelectedSuite />
+        </div>
+      </div>
     </div>
   </div>
 );

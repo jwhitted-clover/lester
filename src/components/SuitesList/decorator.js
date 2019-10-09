@@ -8,7 +8,7 @@ import {
   setSelectedSuite,
 } from '../../store/suites';
 
-const selectors = state => ({
+const select = state => ({
   loading: selectSuitesLoading(state),
   names: selectSuiteNames(state),
   selected: selectSuitesSelected(state),
@@ -20,6 +20,6 @@ const boundActions = {
 };
 
 export default connect(
-  selectors,
+  select,
   boundActions
 );

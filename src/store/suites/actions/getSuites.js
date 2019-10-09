@@ -13,6 +13,8 @@ export default ({ server, force = false } = {}) => async (dispatch, getState) =>
 
     dispatch({ type: CONST.SUITES_GET });
 
+    await new Promise(resolve => setTimeout(resolve, 2000));
+
     const response = await fetch('/api/test-suites', {
       method: 'POST',
       headers: {
