@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { Card, CardHeader, CardBody, ListGroup, ListGroupItem } from 'reactstrap';
 
 class SuitesList extends Component {
   componentDidMount() {
@@ -16,9 +17,9 @@ class SuitesList extends Component {
   render() {
     const { loading, names } = this.props;
     return (
-      <div className="SuitesList card">
-        <div className="card-header bg-secondary text-white">
-          Test Suites
+      <Card className="SuitesList" color="secondary" inverse>
+        <CardHeader>
+          Test Suites {!loading && <span className="text-dark small">({names.length})</span>}
           <button
             type="button"
             className="btn btn-secondary btn-sm"
@@ -27,12 +28,20 @@ class SuitesList extends Component {
             title="Refresh">
             <FontAwesomeIcon icon="sync" />
           </button>
-        </div>
-        <div className="card-body">
+        </CardHeader>
+        <CardBody className="m-0 p-0">
           {loading && 'Loading...'}
-          {!loading && <pre>{JSON.stringify(names, null, 2)}</pre>}
-        </div>
-      </div>
+          {!loading && (
+            <ListGroup>
+              {names.map(name => (
+                <ListGroupItem tag="button" action>
+                  {name}
+                </ListGroupItem>
+              ))}
+            </ListGroup>
+          )}
+        </CardBody>
+      </Card>
     );
   }
 }
