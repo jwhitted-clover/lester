@@ -2,17 +2,19 @@ import { applyMiddleware, compose, createStore } from 'redux';
 import thunk from 'redux-thunk';
 
 import rootReducer from './rootReducer';
-import { localStorageMiddleware, getLocalStorage } from './localStorage';
+import { indexedDBMiddleware, getIndexedDB } from './indexedDB';
 
-export default initialState => {
-  const middleware = applyMiddleware(thunk, localStorageMiddleware);
+export default async initialState => {
+  const middleware = applyMiddleware(thunk, indexedDBMiddleware);
 
   const devtools = window.__REDUX_DEVTOOLS_EXTENSION__;
   const enhancer = devtools ? devtools() : f => f;
 
+  const state = await getIndexedDB(initialState);
+
   return createStore(
     rootReducer,
-    getLocalStorage(initialState),
+    state,
     compose(
       middleware,
       enhancer

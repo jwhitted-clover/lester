@@ -1,5 +1,10 @@
 import createStore from './createStore';
 
-const store = createStore();
+let resolver = o => o;
+const promise = new Promise(resolve => {
+  resolver = resolve;
+});
 
-export default store;
+createStore().then(store => resolver(store));
+
+export default promise;
