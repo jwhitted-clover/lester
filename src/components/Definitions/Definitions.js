@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { Card, CardHeader, CardBody, Table } from 'reactstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -21,17 +21,25 @@ const Definitions = ({
   getDefinitions,
   loading,
 }) => {
-  useEffect(() => {
-    getDefinitions();
-  }, [getDefinitions]);
+  const [refreshing, setRefreshing] = useState(false);
 
-  const refresh = () => getDefinitions({ force: true });
+  const refresh = (force = false) => {
+    getDefinitions({ force });
+    setRefreshing(true);
+    setTimeout(() => setRefreshing(false), 5000);
+  };
+
+  useEffect(refresh, [getDefinitions]);
 
   return (
     <Card className="Definitions" color="secondary" inverse>
       <CardHeader>
         Definitions
-        <button type="button" onClick={refresh} className="btn btn-secondary btn-sm p-0 px-1">
+        <button
+          type="button"
+          onClick={() => refresh(true)}
+          className="btn btn-secondary btn-sm p-0 px-1"
+          disabled={refreshing}>
           <FontAwesomeIcon icon="sync" />
         </button>
       </CardHeader>

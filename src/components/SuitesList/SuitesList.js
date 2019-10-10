@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Alert, Card, CardHeader, CardBody, ListGroup, ListGroupItem } from 'reactstrap';
@@ -9,18 +9,28 @@ import SuiteItem from './SuiteItem';
 import './stylesheet.css';
 
 const SuitesList = ({ getSuites, loading, message, names, selected, setSelectedSuite, status }) => {
-  useEffect(() => {
-    getSuites();
-  }, [getSuites]);
+  const [refreshing, setRefreshing] = useState(false);
 
-  const refresh = () => getSuites({ force: true });
+  const refresh = (force = false) => {
+    getSuites({ force });
+    setRefreshing(true);
+    setTimeout(() => setRefreshing(false), 5000);
+  };
+
+  useEffect(refresh, [getSuites]);
+
   const select = name => setSelectedSuite(name);
 
   return (
     <Card className="SuitesList" color="secondary" inverse>
       <CardHeader>
         Test Suites {!loading && <span className="text-dark small">({names.length})</span>}
-        <button type="button" className="btn btn-secondary btn-sm p-0 px-1" onClick={refresh} title="Refresh">
+        <button
+          type="button"
+          className="btn btn-secondary btn-sm p-0 px-1"
+          onClick={() => refresh(true)}
+          title="Refresh"
+          disabled={refreshing}>
           <FontAwesomeIcon icon="sync" />
         </button>
       </CardHeader>

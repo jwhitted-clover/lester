@@ -16,11 +16,11 @@ const compose = (...fns) => fns.reduce((f, g) => x => f(g(x)), x => x);
 const sort = arr => arr.sort((a, b) => a.key.localeCompare(b.key));
 const values = compose(
   sort,
-  arr => arr.map(key => ({ key }))
+  arr => (arr || []).map(key => ({ key }))
 );
 const entries = compose(
   sort,
-  o => Object.entries(o).map(([key, value]) => ({ key, value }))
+  obj => Object.entries(obj || {}).map(([key, value]) => ({ key, value }))
 );
 
 export const selectDefinitionsBuildInfo = createSelector(
