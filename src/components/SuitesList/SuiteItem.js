@@ -1,24 +1,16 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { ListGroupItem } from 'reactstrap';
 
-class SuiteItem extends Component {
-  click = () => {
-    const { name, onClick } = this.props;
-    console.log('click', { name, onClick });
-    onClick(name);
-  };
+const SuiteItem = ({ active, name, onClick }) => {
+  const click = () => onClick(name);
 
-  render() {
-    const { active, name } = this.props;
-
-    return (
-      <ListGroupItem active={active} tag="button" action onClick={this.click}>
-        {name}
-      </ListGroupItem>
-    );
-  }
-}
+  return (
+    <ListGroupItem active={active} tag="button" action onClick={click}>
+      {name}
+    </ListGroupItem>
+  );
+};
 
 SuiteItem.propTypes = {
   active: PropTypes.bool.isRequired,
