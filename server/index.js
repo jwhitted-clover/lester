@@ -17,6 +17,7 @@ app.all('/api/hello', (req, res) => {
 });
 
 app.post('/api/test-suites', require('./test-suites').default);
+app.post('/api/test-definitions', require('./test-definitions').default);
 
 app.listen(PORT, () => {
   // eslint-disable-next-line no-console

@@ -28,7 +28,7 @@
         "tabWidth": 2
       }
     ],
-    "no-console": ["error"],
+    "no-console": ["warn"],
     "no-only-tests/no-only-tests": ["error"],
     "no-plusplus": ["off"],
     "no-underscore-dangle": 0,

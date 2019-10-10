@@ -2,6 +2,7 @@ import * as CONST from '../constants';
 
 const ignore = (force, state) => {
   if (force) return false;
+  if (state.loading) return true;
   if (state.expires <= new Date().getTime()) return false;
   return true;
 };
@@ -9,7 +10,7 @@ const ignore = (force, state) => {
 // eslint-dsiable-next-line no-unused-vars
 export default ({ server, force = false } = {}) => async (dispatch, getState) => {
   try {
-    if (ignore(force, getState().suites)) return;
+    if (ignore(force, getState().definitions)) return;
 
     dispatch({ type: CONST.DEFINITIONS_GET });
 

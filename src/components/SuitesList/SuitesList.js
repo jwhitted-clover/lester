@@ -30,12 +30,7 @@ class SuitesList extends Component {
       <Card className="SuitesList" color="secondary" inverse>
         <CardHeader>
           Test Suites {!loading && <span className="text-dark small">({names.length})</span>}
-          <button
-            type="button"
-            className="btn btn-secondary btn-sm p-0 px-1"
-            onClick={this.refresh}
-            disabled={loading}
-            title="Refresh">
+          <button type="button" className="btn btn-secondary btn-sm p-0 px-1" onClick={this.refresh} title="Refresh">
             <FontAwesomeIcon icon="sync" />
           </button>
         </CardHeader>

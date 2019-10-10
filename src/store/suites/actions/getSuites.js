@@ -2,6 +2,7 @@ import * as CONST from '../constants';
 
 const ignore = (force, state) => {
   if (force) return false;
+  if (state.loading) return true;
   if (state.expires <= new Date().getTime()) return false;
   return true;
 };
