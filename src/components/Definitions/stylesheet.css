@@ -1,0 +1,5 @@
+.Definitions .TestCaseList {
+  overflow-y: scroll;
+  -webkit-overflow-scrolling: touch;
+  max-height: 450px;
+}

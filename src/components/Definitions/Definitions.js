@@ -7,6 +7,8 @@ import { Loading } from '../Loading';
 
 import keyValueShape from './keyValueShape';
 import KeyValuePair from './KeyValuePair';
+import TestCaseList from './TestCaseList';
+import './stylesheet.css';
 
 const Definitions = ({
   buildInfo,
@@ -23,10 +25,7 @@ const Definitions = ({
     getDefinitions();
   }, [getDefinitions]);
 
-  // eslint-disable-next-line no-unused-vars
-  const refresh = event => {
-    getDefinitions({ force: true });
-  };
+  const refresh = () => getDefinitions({ force: true });
 
   return (
     <Card className="Definitions" color="secondary" inverse>
@@ -98,7 +97,9 @@ const Definitions = ({
                   Test Cases
                   <span className="text-light small ml-1">({testCases.length})</span>
                 </th>
-                <td>Coming soon...</td>
+                <td className="p-0 pl-3">
+                  <TestCaseList testCases={testCases} />
+                </td>
               </tr>
               <tr>
                 <th>
