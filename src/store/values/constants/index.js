@@ -6,9 +6,11 @@ export const VALUE = {
   SUITES: {
     FILTER: 'suites.filter',
     SELECTED: 'suites.selected',
+    SCROLL_TOP: 'suites.scrollTop',
   },
   TEST_CASES: {
     FILTER: 'testCases.filter',
     SELECTED: 'testCases.selected',
+    SCROLL_TOP: 'testCases.scrollTop',
   },
 };

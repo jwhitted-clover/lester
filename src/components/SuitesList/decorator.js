@@ -1,6 +1,8 @@
+import { compose } from 'redux';
 import { connect } from 'react-redux';
 import { createSelector } from 'reselect';
 
+import { persistentScroll } from '../../hocs';
 import {
   getSuites,
   selectSuiteNames,
@@ -34,7 +36,10 @@ const boundActions = {
   setSelected: setValue(VALUE.SUITES.SELECTED),
 };
 
-export default connect(
-  select,
-  boundActions
+export default compose(
+  persistentScroll(VALUE.SUITES.SCROLL_TOP),
+  connect(
+    select,
+    boundActions
+  )
 );

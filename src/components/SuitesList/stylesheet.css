@@ -1,4 +1,4 @@
-.SuitesList .card-body {
+.SuitesList .scroller {
   overflow-y: scroll;
   -webkit-overflow-scrolling: touch;
   max-height: 610px;

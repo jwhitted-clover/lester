@@ -8,7 +8,19 @@ import { Loading } from '../Loading';
 
 import './stylesheet.css';
 
-const SuitesList = ({ filter, getSuites, loading, message, names, selected, setFilter, setSelected, status }) => {
+const SuitesList = ({
+  filter,
+  getSuites,
+  loading,
+  message,
+  names,
+  onScroll,
+  scrollRef,
+  selected,
+  setFilter,
+  setSelected,
+  status,
+}) => {
   const [refreshing, setRefreshing] = useState(false);
 
   const refresh = (force = false) => {
@@ -56,16 +68,18 @@ const SuitesList = ({ filter, getSuites, loading, message, names, selected, setF
             </Alert>
           )}
           <ListGroup>
-            {!names.length && (
-              <ListGroupItem>
-                <i>Nothing to display</i>
-              </ListGroupItem>
-            )}
-            {names.map(name => (
-              <ListGroupItem key={name} type="button" active={selected === name} onClick={() => setSelected(name)}>
-                {name}
-              </ListGroupItem>
-            ))}
+            <div ref={scrollRef} className="scroller" onScroll={onScroll}>
+              {!names.length && (
+                <ListGroupItem>
+                  <i>Nothing to display</i>
+                </ListGroupItem>
+              )}
+              {names.map(name => (
+                <ListGroupItem key={name} type="button" active={selected === name} onClick={() => setSelected(name)}>
+                  {name}
+                </ListGroupItem>
+              ))}
+            </div>
           </ListGroup>
         </CardBody>
       )}
@@ -84,6 +98,9 @@ SuitesList.propTypes = {
   setFilter: PropTypes.func.isRequired,
   setSelected: PropTypes.func.isRequired,
   status: PropTypes.string.isRequired,
+  // persistentScroll
+  onScroll: PropTypes.func.isRequired,
+  scrollRef: PropTypes.shape({ current: PropTypes.any }),
 };
 
 SuitesList.defaultProps = {
