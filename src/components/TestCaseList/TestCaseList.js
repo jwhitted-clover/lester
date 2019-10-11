@@ -2,8 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Card, CardHeader, CardBody, ListGroup, ListGroupItem } from 'reactstrap';
 
-import { debounce } from '../../common';
-import * as Shapes from '../../shapes';
+import { debounce, Shapes } from '../../common';
 
 import './stylesheet.css';
 

@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import { Card, CardHeader, CardBody } from 'reactstrap';
 import JsonInput from 'react-json-editor-ajrm';
 
+import { Shapes } from '../../common';
+
 const Suite = ({ name, testCase }) => {
   if (!name) return null;
   return (
@@ -20,7 +22,7 @@ const Suite = ({ name, testCase }) => {
 
 Suite.propTypes = {
   name: PropTypes.string,
-  testCase: PropTypes.object, // eslint-disable-line react/forbid-prop-types
+  testCase: Shapes.testCase,
 };
 
 Suite.defaultProps = {

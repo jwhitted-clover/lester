@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { Card, CardHeader, CardBody, Table } from 'reactstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-import * as Shapes from '../../shapes';
+import { Shapes } from '../../common';
 import { Loading } from '../Loading';
 
 import KeyValuePair from './KeyValuePair';
@@ -39,14 +39,16 @@ const Definitions = ({
           type="button"
           onClick={() => refresh(true)}
           className="btn btn-secondary btn-sm p-0 px-1"
-          disabled={refreshing}>
+          disabled={refreshing}
+        >
           <FontAwesomeIcon icon="sync" />
         </button>
         <button
           type="button"
           onClick={() => setCollapsed(!collapsed)}
           className="btn btn-secondary btn-sm p-0 px-1 float-right"
-          title={collapsed ? 'Expand' : 'Collapse'}>
+          title={collapsed ? 'Expand' : 'Collapse'}
+        >
           <FontAwesomeIcon icon={collapsed ? 'chevron-down' : 'chevron-up'} />
         </button>
       </CardHeader>

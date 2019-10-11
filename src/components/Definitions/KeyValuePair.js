@@ -1,6 +1,6 @@
 import React from 'react';
 
-import * as Shapes from '../../shapes';
+import { Shapes } from '../../common';
 
 const title = value => {
   if (value === null) return 'null';

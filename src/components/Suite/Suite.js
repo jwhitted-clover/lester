@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { Card, CardHeader, CardBody } from 'reactstrap';
 import JsonInput from 'react-json-editor-ajrm';
 
-import * as Shapes from '../../shapes';
+import { Shapes } from '../../common';
 
 const Suite = ({ name, suite }) => {
   if (!name) return null;
