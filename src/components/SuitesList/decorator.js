@@ -1,4 +1,5 @@
 import { connect } from 'react-redux';
+import { createSelector } from 'reselect';
 
 import {
   getSuites,
@@ -8,21 +9,29 @@ import {
   selectSuitesStatus,
 } from '../../store/suites';
 
-import { selectValue, setValue } from '../../store/values';
+import { selectValue, setValue, VALUE } from '../../store/values';
 
-const SELECTED = 'selectedSuite';
+const selectFilter = selectValue(VALUE.SUITES.FILTER);
+
+const selectFilteredSuiteNames = createSelector(
+  selectSuiteNames,
+  selectFilter,
+  (suites, filter) => (!filter ? suites : suites.filter(suite => suite.includes(filter)))
+);
 
 const select = state => ({
+  filter: selectFilter(state),
   loading: selectSuitesLoading(state),
   message: selectSuitesMessage(state),
-  names: selectSuiteNames(state),
-  selected: selectValue(SELECTED)(state),
+  names: selectFilteredSuiteNames(state),
+  selected: selectValue(VALUE.SUITES.SELECTED)(state),
   status: selectSuitesStatus(state),
 });
 
 const boundActions = {
   getSuites,
-  setSelected: setValue(SELECTED),
+  setFilter: setValue(VALUE.SUITES.FILTER),
+  setSelected: setValue(VALUE.SUITES.SELECTED),
 };
 
 export default connect(

@@ -1,4 +1,5 @@
 import { connect } from 'react-redux';
+
 import {
   getDefinitions,
   selectDefinitionsBuildInfo,
@@ -10,9 +11,11 @@ import {
   selectDefinitionsTestCases,
   selectDefinitionsVariables,
 } from '../../store/definitions';
+import { selectValue, setValue, VALUE } from '../../store/values';
 
 const select = state => ({
   buildInfo: selectDefinitionsBuildInfo(state),
+  collapsed: selectValue(VALUE.DEFINITIONS.COLLAPSED)(state),
   loading: selectDefinitionsLoading(state),
   requiredMerchantConfig: selectDefinitionsRequiredMerchantConfig(state),
   requiredMerchantConfigConflicts: selectDefinitionsRequiredMerchantConfigConflicts(state),
@@ -22,7 +25,10 @@ const select = state => ({
   variables: selectDefinitionsVariables(state),
 });
 
-const boundActions = { getDefinitions };
+const boundActions = {
+  getDefinitions,
+  setCollapsed: setValue(VALUE.DEFINITIONS.COLLAPSED),
+};
 
 export default connect(
   select,

@@ -2,11 +2,9 @@ import { connect } from 'react-redux';
 import { createSelector } from 'reselect';
 
 import { selectDefinitionsTestCases } from '../../store/definitions';
-import { selectValue } from '../../store/values';
+import { selectValue, VALUE } from '../../store/values';
 
-const SELECTED = 'selectedTestCase';
-
-const selectName = selectValue(SELECTED);
+const selectName = selectValue(VALUE.TEST_CASES.SELECTED);
 
 const selectTestCase = createSelector(
   selectDefinitionsTestCases,

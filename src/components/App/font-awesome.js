@@ -1,4 +1,4 @@
 import { library } from '@fortawesome/fontawesome-svg-core';
-import { faInfoCircle, faSpinner, faSync } from '@fortawesome/free-solid-svg-icons';
+import { faChevronDown, faChevronUp, faInfoCircle, faSpinner, faSync } from '@fortawesome/free-solid-svg-icons';
 
-library.add(faInfoCircle, faSpinner, faSync);
+library.add(faChevronDown, faChevronUp, faInfoCircle, faSpinner, faSync);

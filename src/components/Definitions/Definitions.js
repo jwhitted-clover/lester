@@ -10,14 +10,16 @@ import KeyValuePair from './KeyValuePair';
 
 const Definitions = ({
   buildInfo,
+  collapsed,
+  getDefinitions,
+  loading,
   requiredMerchantConfig,
   requiredMerchantConfigConflicts,
   requiredRobotCapabilities,
   robotActions,
+  setCollapsed,
   testCases,
   variables,
-  getDefinitions,
-  loading,
 }) => {
   const [refreshing, setRefreshing] = useState(false);
 
@@ -37,9 +39,14 @@ const Definitions = ({
           type="button"
           onClick={() => refresh(true)}
           className="btn btn-secondary btn-sm p-0 px-1"
-          disabled={refreshing}
-        >
+          disabled={refreshing}>
           <FontAwesomeIcon icon="sync" />
+        </button>
+        <button
+          type="button"
+          onClick={() => setCollapsed(!collapsed)}
+          className="btn btn-secondary btn-sm p-0 px-1 float-right">
+          <FontAwesomeIcon icon={collapsed ? 'chevron-down' : 'chevron-up'} />
         </button>
       </CardHeader>
       {loading && (
@@ -47,7 +54,7 @@ const Definitions = ({
           <Loading />
         </CardBody>
       )}
-      {!loading && (
+      {!loading && !collapsed && (
         <CardBody className="m-0 p-0">
           <Table className="text-dark mb-0" striped hover responsive>
             <tbody>
@@ -121,12 +128,14 @@ const Definitions = ({
 Definitions.propTypes = {
   // connect
   buildInfo: PropTypes.string.isRequired,
+  collapsed: PropTypes.bool.isRequired,
   getDefinitions: PropTypes.func.isRequired,
   loading: PropTypes.bool.isRequired,
   requiredMerchantConfig: PropTypes.arrayOf(keyValueShape).isRequired,
   requiredMerchantConfigConflicts: PropTypes.arrayOf(keyValueShape).isRequired,
   requiredRobotCapabilities: PropTypes.arrayOf(keyValueShape).isRequired,
   robotActions: PropTypes.arrayOf(keyValueShape).isRequired,
+  setCollapsed: PropTypes.func.isRequired,
   testCases: PropTypes.arrayOf(keyValueShape).isRequired,
   variables: PropTypes.arrayOf(keyValueShape).isRequired,
 };

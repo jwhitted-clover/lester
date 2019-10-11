@@ -2,11 +2,9 @@ import { connect } from 'react-redux';
 import { createSelector } from 'reselect';
 
 import { selectSuites } from '../../store/suites';
-import { selectValue, setValue } from '../../store/values';
+import { selectValue, setValue, VALUE } from '../../store/values';
 
-const SELECTED = 'selectedSuite';
-
-const selectName = selectValue(SELECTED);
+const selectName = selectValue(VALUE.SUITES.SELECTED);
 
 const selectSuite = createSelector(
   selectSuites,
@@ -19,7 +17,7 @@ const select = state => ({
   suite: selectSuite(state),
 });
 
-const boundActions = { setValue: setValue(SELECTED) };
+const boundActions = { setValue: setValue(VALUE.SUITES.SELECTED) };
 
 export default connect(
   select,

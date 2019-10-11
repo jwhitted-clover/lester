@@ -3,11 +3,12 @@ import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Alert, Card, CardHeader, CardBody, ListGroup, ListGroupItem } from 'reactstrap';
 
+import { debounce } from '../../common';
 import { Loading } from '../Loading';
 
 import './stylesheet.css';
 
-const SuitesList = ({ getSuites, loading, message, names, selected, setSelected, status }) => {
+const SuitesList = ({ filter, getSuites, loading, message, names, selected, setFilter, setSelected, status }) => {
   const [refreshing, setRefreshing] = useState(false);
 
   const refresh = (force = false) => {
@@ -30,6 +31,14 @@ const SuitesList = ({ getSuites, loading, message, names, selected, setSelected,
           disabled={refreshing}>
           <FontAwesomeIcon icon="sync" />
         </button>
+        <div className="form-inline float-right">
+          <input
+            className="form-control form-control-sm"
+            type="text"
+            placeholder="Filter"
+            onChange={debounce(event => setFilter(event.target.value))}
+            defaultValue={filter}/>
+        </div>
       </CardHeader>
       {loading && (
         <CardBody>
@@ -66,15 +75,20 @@ const SuitesList = ({ getSuites, loading, message, names, selected, setSelected,
 
 SuitesList.propTypes = {
   // connect
+  filter: PropTypes.string,
   getSuites: PropTypes.func.isRequired,
   loading: PropTypes.bool.isRequired,
   message: PropTypes.string.isRequired,
   names: PropTypes.arrayOf(PropTypes.string).isRequired,
   selected: PropTypes.string,
+  setFilter: PropTypes.func.isRequired,
   setSelected: PropTypes.func.isRequired,
   status: PropTypes.string.isRequired,
 };
 
-SuitesList.defaultProps = { selected: null };
+SuitesList.defaultProps = {
+  filter: undefined,
+  selected: null,
+};
 
 export default SuitesList;

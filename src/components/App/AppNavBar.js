@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Collapse, Navbar, NavbarToggler, NavbarBrand, Nav, NavItem } from 'reactstrap';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
 const AppNavBar = () => {
   const [open, setOpen] = useState(false);
@@ -14,14 +14,14 @@ const AppNavBar = () => {
       <Collapse isOpen={open} navbar>
         <Nav className="ml-auto" navbar>
           <NavItem>
-            <Link to="/suites" className="nav-link">
+            <NavLink to="/suites" className="nav-link" activeClassName="active">
               Suites
-            </Link>
+            </NavLink>
           </NavItem>
           <NavItem>
-            <Link to="/definitions" className="nav-link">
+            <NavLink to="/definitions" className="nav-link" activeClassName="active">
               Definitions
-            </Link>
+            </NavLink>
           </NavItem>
         </Nav>
       </Collapse>
