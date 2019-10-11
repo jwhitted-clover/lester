@@ -5,12 +5,20 @@ import uuid from './uuid';
 export default PropTypes.exact({
   uuid: uuid.isRequired,
   name: PropTypes.string.isRequired,
+  description: PropTypes.string,
   parameters: PropTypes.exact({
     delayBeforeExecution: PropTypes.number,
     iterations: PropTypes.number,
     responseTimeout: PropTypes.number,
   }),
   context: PropTypes.exact({
+    inputOptions: PropTypes.arrayOf(
+      PropTypes.exact({
+        on: PropTypes.oneOf(['PROCESSING_SWIPE', 'RECEIPT_OPTIONS']).isRequired,
+        description: PropTypes.string,
+        select: PropTypes.oneOf(['ESC']),
+      })
+    ),
     request: PropTypes.exact({
       body: PropTypes.object,
       httpMethod: PropTypes.oneOf(['POST']),
@@ -19,10 +27,15 @@ export default PropTypes.exact({
         'DISPLAY_PAYMENT_RECEIPT_OPTIONS',
         'DISPLAY_RECEIPT_OPTIONS',
         'INVOKE_INPUT_OPTION',
+        'MANUAL_REFUND',
+        'REFUND_PAYMENT',
+        'REGISTER_FOR_CUSTOMER_PROVIDED_DATA',
         'REMOVE_DISPLAY_ORDER',
         'RESET_DEVICE',
+        'RETRIEVE_PRINT_JOB_STATUS',
         'SALE',
         'SEND_MESSAGE_TO_ACTIVITY',
+        'SET_CUSTOMER_INFO',
         'SHOW_DISPLAY_ORDER',
         'SHOW_MESSAGE',
         'SHOW_THANK_YOU_SCREEN',
@@ -48,6 +61,14 @@ export default PropTypes.exact({
         'onCustomActivityResponse',
         'onDeviceActivityEnd',
         'onDisplayReceiptOptionsResponse',
+        'onInvalidStateTransitionResponse',
+        'onPrintJobStatusResponse',
+        'onPrintManualRefundDeclineReceipt',
+        'onPrintManualRefundReceipt',
+        'onPrintPaymentDeclineReceipt',
+        'onPrintPaymentMerchantCopyReceipt',
+        'onPrintPaymentReceipt',
+        'onPrintRefundPaymentReceipt',
         'onResetDeviceResponse',
         'onRetrieveDeviceStatusResponse',
         'onSaleResponse',
@@ -76,7 +97,12 @@ export default PropTypes.exact({
   method: PropTypes.exact({}),
   waitUntil: PropTypes.exact({
     response: PropTypes.exact({
-      method: PropTypes.oneOf(['onDeviceActivityStart', 'onDeviceActivityEnd']).isRequired,
+      method: PropTypes.oneOf([
+        'onCustomerProvidedData',
+        'onDeviceActivityStart',
+        'onDeviceActivityEnd',
+        'onMessageFromActivity',
+      ]).isRequired,
       payload: PropTypes.object.isRequired,
     }).isRequired,
   }),
