@@ -45,7 +45,8 @@ const Definitions = ({
         <button
           type="button"
           onClick={() => setCollapsed(!collapsed)}
-          className="btn btn-secondary btn-sm p-0 px-1 float-right">
+          className="btn btn-secondary btn-sm p-0 px-1 float-right"
+          title={collapsed ? 'Expand' : 'Collapse'}>
           <FontAwesomeIcon icon={collapsed ? 'chevron-down' : 'chevron-up'} />
         </button>
       </CardHeader>

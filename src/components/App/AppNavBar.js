@@ -5,12 +5,10 @@ import { NavLink } from 'react-router-dom';
 const AppNavBar = () => {
   const [open, setOpen] = useState(false);
 
-  const toggle = () => setOpen(!open);
-
   return (
     <Navbar color="primary" dark expand="md" fixed="top">
       <NavbarBrand href="/">Lester</NavbarBrand>
-      <NavbarToggler onClick={toggle} />
+      <NavbarToggler onClick={() => setOpen(!open)} />
       <Collapse isOpen={open} navbar>
         <Nav className="ml-auto" navbar>
           <NavItem>
