@@ -1,6 +1,6 @@
 import React from 'react';
 
-import keyValueShape from './keyValueShape';
+import { keyValueShape } from '../../common';
 
 const title = value => {
   if (value === null) return 'null';

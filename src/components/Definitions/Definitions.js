@@ -3,12 +3,10 @@ import PropTypes from 'prop-types';
 import { Card, CardHeader, CardBody, Table } from 'reactstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
+import { keyValueShape } from '../../common';
 import { Loading } from '../Loading';
 
-import keyValueShape from './keyValueShape';
 import KeyValuePair from './KeyValuePair';
-import TestCaseList from './TestCaseList';
-import './stylesheet.css';
 
 const Definitions = ({
   buildInfo,
@@ -39,7 +37,8 @@ const Definitions = ({
           type="button"
           onClick={() => refresh(true)}
           className="btn btn-secondary btn-sm p-0 px-1"
-          disabled={refreshing}>
+          disabled={refreshing}
+        >
           <FontAwesomeIcon icon="sync" />
         </button>
       </CardHeader>
@@ -99,15 +98,6 @@ const Definitions = ({
                     <KeyValuePair key={kvp.key} kvp={kvp} />
                   ))}
                 </th>
-              </tr>
-              <tr>
-                <th>
-                  Test Cases
-                  <span className="text-light small ml-1">({testCases.length})</span>
-                </th>
-                <td className="p-0 pl-3">
-                  <TestCaseList testCases={testCases} />
-                </td>
               </tr>
               <tr>
                 <th>

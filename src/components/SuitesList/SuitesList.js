@@ -5,7 +5,6 @@ import { Alert, Card, CardHeader, CardBody, ListGroup, ListGroupItem } from 'rea
 
 import { Loading } from '../Loading';
 
-import SuiteItem from './SuiteItem';
 import './stylesheet.css';
 
 const SuitesList = ({ getSuites, loading, message, names, selected, setSelectedSuite, status }) => {
@@ -56,7 +55,9 @@ const SuitesList = ({ getSuites, loading, message, names, selected, setSelectedS
               </ListGroupItem>
             )}
             {names.map(name => (
-              <SuiteItem key={name} active={selected === name} name={name} onClick={select} />
+              <ListGroupItem key={name} type="button" active={selected === name} onClick={select}>
+                {name}
+              </ListGroupItem>
             ))}
           </ListGroup>
         </CardBody>

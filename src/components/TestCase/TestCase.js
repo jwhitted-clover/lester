@@ -3,16 +3,16 @@ import PropTypes from 'prop-types';
 import { Card, CardHeader, CardBody } from 'reactstrap';
 import JsonInput from 'react-json-editor-ajrm';
 
-const Suite = ({ name, suite }) => {
+const Suite = ({ name, testCase }) => {
   if (!name) return null;
   return (
-    <Card className="Suite" color="secondary" inverse>
+    <Card className="TestCase" color="secondary" inverse>
       <CardHeader>
-        <span className="text-dark">Suite: </span>
+        <span className="text-dark">TestCase: </span>
         {name}
       </CardHeader>
       <CardBody className="m-0 p-0">
-        <JsonInput placeholder={suite} width="100%" viewOnly confirmGood={false} locale="en" />
+        <JsonInput placeholder={testCase} width="100%" viewOnly confirmGood={false} locale="en" />
       </CardBody>
     </Card>
   );
@@ -20,12 +20,12 @@ const Suite = ({ name, suite }) => {
 
 Suite.propTypes = {
   name: PropTypes.string,
-  suite: PropTypes.object, // eslint-disable-line react/forbid-prop-types
+  testCase: PropTypes.object, // eslint-disable-line react/forbid-prop-types
 };
 
 Suite.defaultProps = {
   name: undefined,
-  suite: undefined,
+  testCase: undefined,
 };
 
 export default Suite;
