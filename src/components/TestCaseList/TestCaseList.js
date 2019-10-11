@@ -2,7 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Card, CardHeader, CardBody, ListGroup, ListGroupItem } from 'reactstrap';
 
-import { debounce, keyValueShape } from '../../common';
+import { debounce } from '../../common';
+import * as Shapes from '../../shapes';
 
 import './stylesheet.css';
 
@@ -19,8 +20,7 @@ const TestCaseList = ({ filter, selected, setFilter, setSelected, testCases }) =
             type="text"
             placeholder="Filter"
             onChange={debounce(event => setFilter(event.target.value))}
-            defaultValue={filter}
-          />
+            defaultValue={filter}/>
         </div>
       </CardHeader>
       <CardBody className="m-0 p-0">
@@ -47,7 +47,7 @@ TestCaseList.propTypes = {
   selected: PropTypes.string,
   setFilter: PropTypes.func.isRequired,
   setSelected: PropTypes.func.isRequired,
-  testCases: PropTypes.arrayOf(keyValueShape),
+  testCases: PropTypes.arrayOf(Shapes.keyValue),
 };
 
 TestCaseList.defaultProps = {

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { Card, CardHeader, CardBody, Table } from 'reactstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-import { keyValueShape } from '../../common';
+import * as Shapes from '../../shapes';
 import { Loading } from '../Loading';
 
 import KeyValuePair from './KeyValuePair';
@@ -132,13 +132,13 @@ Definitions.propTypes = {
   collapsed: PropTypes.bool.isRequired,
   getDefinitions: PropTypes.func.isRequired,
   loading: PropTypes.bool.isRequired,
-  requiredMerchantConfig: PropTypes.arrayOf(keyValueShape).isRequired,
-  requiredMerchantConfigConflicts: PropTypes.arrayOf(keyValueShape).isRequired,
-  requiredRobotCapabilities: PropTypes.arrayOf(keyValueShape).isRequired,
-  robotActions: PropTypes.arrayOf(keyValueShape).isRequired,
+  requiredMerchantConfig: PropTypes.arrayOf(Shapes.keyValue).isRequired,
+  requiredMerchantConfigConflicts: PropTypes.arrayOf(Shapes.keyValue).isRequired,
+  requiredRobotCapabilities: PropTypes.arrayOf(Shapes.keyValue).isRequired,
+  robotActions: PropTypes.arrayOf(Shapes.keyValue).isRequired,
   setCollapsed: PropTypes.func.isRequired,
-  testCases: PropTypes.arrayOf(keyValueShape).isRequired,
-  variables: PropTypes.arrayOf(keyValueShape).isRequired,
+  testCases: PropTypes.arrayOf(Shapes.keyValue).isRequired,
+  variables: PropTypes.arrayOf(Shapes.keyValue).isRequired,
 };
 
 Definitions.defaultProps = {};

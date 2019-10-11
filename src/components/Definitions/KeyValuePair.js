@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { keyValueShape } from '../../common';
+import * as Shapes from '../../shapes';
 
 const title = value => {
   if (value === null) return 'null';
@@ -15,7 +15,7 @@ const KeyValuePair = ({ kvp: { key, value } }) => (
   </span>
 );
 
-KeyValuePair.propTypes = { kvp: keyValueShape.isRequired };
+KeyValuePair.propTypes = { kvp: Shapes.keyValue.isRequired };
 
 KeyValuePair.defaultProps = {};
 
