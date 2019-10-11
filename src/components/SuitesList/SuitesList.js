@@ -7,7 +7,7 @@ import { Loading } from '../Loading';
 
 import './stylesheet.css';
 
-const SuitesList = ({ getSuites, loading, message, names, selected, setSelectedSuite, status }) => {
+const SuitesList = ({ getSuites, loading, message, names, selected, setSelected, status }) => {
   const [refreshing, setRefreshing] = useState(false);
 
   const refresh = (force = false) => {
@@ -17,8 +17,6 @@ const SuitesList = ({ getSuites, loading, message, names, selected, setSelectedS
   };
 
   useEffect(refresh, [getSuites]);
-
-  const select = name => setSelectedSuite(name);
 
   return (
     <Card className="SuitesList" color="secondary" inverse>
@@ -55,7 +53,7 @@ const SuitesList = ({ getSuites, loading, message, names, selected, setSelectedS
               </ListGroupItem>
             )}
             {names.map(name => (
-              <ListGroupItem key={name} type="button" active={selected === name} onClick={select}>
+              <ListGroupItem key={name} type="button" active={selected === name} onClick={() => setSelected(name)}>
                 {name}
               </ListGroupItem>
             ))}
@@ -73,7 +71,7 @@ SuitesList.propTypes = {
   message: PropTypes.string.isRequired,
   names: PropTypes.arrayOf(PropTypes.string).isRequired,
   selected: PropTypes.string,
-  setSelectedSuite: PropTypes.func.isRequired,
+  setSelected: PropTypes.func.isRequired,
   status: PropTypes.string.isRequired,
 };
 

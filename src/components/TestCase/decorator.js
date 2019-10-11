@@ -1,9 +1,26 @@
 import { connect } from 'react-redux';
+import { createSelector } from 'reselect';
 
-// eslint-disable-next-line no-unused-vars
+import { selectDefinitionsTestCases } from '../../store/definitions';
+import { selectValue } from '../../store/values';
+
+const SELECTED = 'selectedTestCase';
+
+const selectName = selectValue(SELECTED);
+
+const selectTestCase = createSelector(
+  selectDefinitionsTestCases,
+  selectName,
+  (testCases, name) => {
+    if (!testCases) return undefined;
+    const testCase = testCases.find(({ key }) => key === name) || {};
+    return testCase.value;
+  }
+);
+
 const select = state => ({
-  name: undefined,
-  testCase: undefined,
+  name: selectName(state),
+  testCase: selectTestCase(state),
 });
 
 const boundActions = {};

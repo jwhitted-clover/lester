@@ -1,5 +1,5 @@
 .TestCaseList .card-body {
   overflow-y: scroll;
   -webkit-overflow-scrolling: touch;
-  max-height: 450px;
+  max-height: 610px;
 }

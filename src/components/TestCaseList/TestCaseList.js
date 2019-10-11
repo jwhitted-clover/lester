@@ -6,10 +6,8 @@ import { keyValueShape } from '../../common';
 
 import './stylesheet.css';
 
-const TestCaseList = ({ testCases, selected }) => {
+const TestCaseList = ({ selected, setSelected, testCases }) => {
   if (!testCases || !testCases.length) return null;
-
-  const select = name => console.log('TestCaseList select', name);
 
   return (
     <Card className="TestCaseList" color="secondary" inverse>
@@ -19,7 +17,7 @@ const TestCaseList = ({ testCases, selected }) => {
       <CardBody className="m-0 p-0">
         <ListGroup>
           {testCases.map(({ key }) => (
-            <ListGroupItem key={key} type="button" active={selected === key} onClick={() => select(key)}>
+            <ListGroupItem key={key} type="button" active={selected === key} onClick={() => setSelected(key)}>
               {key}
             </ListGroupItem>
           ))}
@@ -31,8 +29,9 @@ const TestCaseList = ({ testCases, selected }) => {
 
 TestCaseList.propTypes = {
   // connect
-  testCases: PropTypes.arrayOf(keyValueShape),
   selected: PropTypes.string,
+  setSelected: PropTypes.func.isRequired,
+  testCases: PropTypes.arrayOf(keyValueShape),
 };
 
 TestCaseList.defaultProps = {
