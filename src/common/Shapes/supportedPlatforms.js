@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 
-const reg = /^(ANDROID|CLOUD|JAVA)$/;
+const reg = /^(ANDROID|CLOUD|IOS|JAVA|PAYMENT_CONNECTOR|WINDOWS)$/;
 
 const validate = (propValue, key, componentName, location, propFullName) => {
   if (!Array.isArray(propValue)) {

@@ -131,7 +131,7 @@ const Definitions = ({
 Definitions.propTypes = {
   // connect
   buildInfo: PropTypes.string.isRequired,
-  collapsed: PropTypes.bool.isRequired,
+  collapsed: PropTypes.bool,
   getDefinitions: PropTypes.func.isRequired,
   loading: PropTypes.bool.isRequired,
   requiredMerchantConfig: PropTypes.arrayOf(Shapes.keyValue).isRequired,
@@ -143,6 +143,6 @@ Definitions.propTypes = {
   variables: PropTypes.arrayOf(Shapes.keyValue).isRequired,
 };
 
-Definitions.defaultProps = {};
+Definitions.defaultProps = { collapsed: false };
 
 export default Definitions;

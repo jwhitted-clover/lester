@@ -2,16 +2,18 @@
 export default regex => {
   const validator = (propValue, key, componentName, location, propFullName) => {
     const value = propValue[key];
-    if (typeof value !== 'string') {
-      return new Error(
-        `Invalid prop \`${propFullName}\` supplied to \`${componentName}\`. Expected string, received ${typeof value}. Validation failed.`
-      );
-    }
+    if (value !== undefined) {
+      if (typeof value !== 'string') {
+        return new Error(
+          `Invalid prop \`${propFullName}\` supplied to \`${componentName}\`. Expected string, received ${typeof value}. Validation failed.`
+        );
+      }
 
-    if (!value.match(regex)) {
-      return new Error(
-        `Invalid prop \`${propFullName}\` '${value}' supplied to \`${componentName}\`. Validation failed.`
-      );
+      if (!value.match(regex)) {
+        return new Error(
+          `Invalid prop \`${propFullName}\` '${value}' supplied to \`${componentName}\`. Validation failed.`
+        );
+      }
     }
 
     return undefined;

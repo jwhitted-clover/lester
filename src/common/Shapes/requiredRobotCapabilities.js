@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 
-const reg = /^(SWIPE_CARD|PROGRAM_SWIPE)$/;
+const reg = /^(MCONFIG1|SWIPE_CARD|PROGRAM_SWIPE|TOUCH)$/;
 
 const validate = (propValue, key, componentName, location, propFullName) => {
   if (!Array.isArray(propValue)) {

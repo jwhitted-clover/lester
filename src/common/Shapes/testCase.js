@@ -11,12 +11,16 @@ export default PropTypes.exact({
   name: PropTypes.string.isRequired,
   description: PropTypes.string.isRequired,
   tags: PropTypes.exact({
-    status: PropTypes.oneOf(['ENABLED']).isRequired,
-    automationLevel: PropTypes.oneOf(['FULLY_AUTOMATED_VIA_ROBOT']).isRequired,
-    zephyrid: zephyrid.isRequired,
-    requiredRobotCapabilities: requiredRobotCapabilities.isRequired,
+    automationLevel: PropTypes.oneOf(['FULLY_AUTOMATED_VIA_ROBOT', 'NO_INPUT_REQUIRED']),
+    requiredRobotCapabilities,
+    sdkVersion: PropTypes.exact({ CLOUD: PropTypes.exact({ min: PropTypes.number }) }),
+    status: PropTypes.oneOf(['ENABLED']),
     supportedPlatforms: supportedPlatforms.isRequired,
+    zephyrid,
   }),
-  parameters: PropTypes.exact({ disposeConnectorBeforeExecution: PropTypes.bool.isRequired }),
+  parameters: PropTypes.exact({
+    delayBeforeExecution: PropTypes.number,
+    disposeConnectorBeforeExecution: PropTypes.bool.isRequired,
+  }),
   testActions: PropTypes.arrayOf(testAction).isRequired,
 });
